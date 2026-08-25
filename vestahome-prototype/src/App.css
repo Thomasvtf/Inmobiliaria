@@ -14,7 +14,7 @@ body, html{
 }
 
 .columna-izquierda {
-    background-image: url(assets/fondo-login.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.425), rgba(0, 0, 0, 0.425)), url(assets/fondo-login.png);
     background-size: cover;
     background-position: center;
 }
@@ -35,15 +35,80 @@ body, html{
 }
 
 .img-logo-login {
-    width: 20px;
-    height: 20px;
-    padding: 16px 10px;
+    width: 25px;
+    height: 25px;
+    padding: 22px 10px;
 }
 
 .txt-logo {
     color: #ffffff;
+    font-size: 23px;
 }
 
 .contenedor-izquierda{
     padding: 40px;
+}
+
+.text-content {
+    padding: 150px 80px;
+}
+
+.text-login{
+    color: #ffffffbb;
+    font-size: 18px ;
+}
+
+.titulo-login{
+    color:#ffffff;
+    font-size: 48px;
+}
+.txt-derecha{
+    margin-bottom: 60px;
+}
+
+.label-login{
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.input-login{
+    border: solid 1px rgb(170, 170, 170);
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.grupo-login{
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn-login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-login{
+    width: 100%;
+    box-sizing: border-box;
+    height: 80px;
+    margin: 60px 0px 20px;
+    background-color: #006C49;
+    color: #ffffff;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+.text-form{
+    text-align: center;
+}
+
+.link-login{
+    text-decoration: none;
+    color: #006C49;
 }
