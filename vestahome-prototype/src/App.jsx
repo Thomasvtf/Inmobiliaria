@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Navbar from './components/Navbar'
 
 import Login from './pages/Login'
 
@@ -7,6 +8,7 @@ function App() {
 
   const [paso, setPaso] = useState(1);
 
+  
   return (
     <>
       <div className='pagina-inicio'>
@@ -17,11 +19,8 @@ function App() {
       </div>
       
       <div className='interfaz-global'>
-
+        <Navbar/>
       </div>
-
-
-
     </>
   )
 }

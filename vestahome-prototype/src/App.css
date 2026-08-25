@@ -2,6 +2,8 @@ body, html{
     margin:0px;
     padding: 0%;
     font-family: "Inter";
+    height: 100%;
+    background-color: white;
 }
 
 .contenedor-login{
@@ -111,4 +113,66 @@ body, html{
 .link-login{
     text-decoration: none;
     color: #006C49;
+}
+
+header{
+  padding: 7px;
+  background-color: white;
+  box-shadow: 0px 1px 4px #0004;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  margin: 0;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.brand-logo a {
+  text-decoration: none;
+  color: #191C1E;
+  font-weight: bold;
+}
+
+.nav{
+  display: flex;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.btn-nav {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.btn-nav-style{
+  text-decoration: none;
+  color: #44474D;
+  font-size: 18px;
+  white-space: nowrap;
+ }
+
+.btn-nav-style:hover,
+.btn-nav-style.active{
+  text-decoration: none;
+  border-bottom: 2px solid #1b4d3e;
+  color: #006C49;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.imgs-nav{
+  display: flex;
+  gap: 23px;
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.img-nav{
+  width: 22px;
+  height: 24px;
 }
