@@ -1,9 +1,14 @@
 body, html{
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   height: 100%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  background-color: white;
+}
+
+.interfaz-global {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header{
@@ -24,7 +29,6 @@ header{
 .brand-logo a {
   text-decoration: none;
   color: #191C1E;
-  font-weight: bold;
 }
 
 .nav{
@@ -66,4 +70,50 @@ header{
 .img-nav{
   width: 22px;
   height: 24px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #E0E3E5;
+  border-top: 1px solid #ccc;
+}
+
+
+.h3-foo{
+  margin: 0;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.p-foo{
+  margin: 0;
+  font-size: 16 px;
+  padding: 10px;
+}
+
+.btn-foo {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  align-items: right;
+  padding: 10px;
+}
+
+.btn-foo-style{
+  text-decoration: none;
+  color: #44474D;
+  font-size: 16px;
+  white-space: nowrap;
+ }
+
+.btn-foo-style:hover,
+.btn-foo-style.active{
+  text-decoration: none;
+  color: #006C49;
+  font-size: 16px;
+  white-space: nowrap;
 }
