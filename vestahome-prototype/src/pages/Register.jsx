@@ -22,35 +22,37 @@ function Register( {anterior, siguiente}){
                             Entra al futuro de la gestión inmobiliaria premium.
                         </p>
                     </div>
-                    <div className="grupo-registrer">
+                    <div className="grupo-register">
                         <label className="label-register">Nombre Completo</label>
                         <input type="text" placeholder="Alejandro Sterling" className="input-register"/>
                     </div>
-                    <div className="grupo-registrer">
+                    <div className="grupo-register">
                         <label className="label-register">Correo electronico</label>
-                        <input type="text" placeholder="Alejandro Sterling" className="input-register"/>
+                        <input type="text" placeholder="alex@vestahome.com" className="input-register"/>
                     </div>
-                    <div className="grupo-registrer">
+                    <div className="grupo-register">
                         <label className="label-register">Número de Teléfono</label>
-                        <input type="text" placeholder="Alejandro Sterling" className="input-register"/>
+                        <input type="text" placeholder="+57 300 000 0000" className="input-register"/>
                     </div>
-                    <div className="grupo-registrer">
+                    <div className="grupo-register">
                         <label className="label-register">Contraseña</label>
-                        <input type="text" placeholder="Alejandro Sterling" className="input-register"/>
+                        <input type="text" placeholder="••••••••" className="input-register"/>
                     </div>
-                    <div className="grupo-registrer">
+                    <div className="grupo-register">
                         <label className="label-register">Identidad Principal</label>
                         <select name="" id="" className="input-register">
                             <option value="Comprador">Comprador</option>
                             <option value="Inquilino">Inquilino</option>
                         </select>
                     </div>
-                    <div className="grupo-registrer">
-                        <input type="checkbox" className="checkbox"/>
-                        <label className="label-register">Acepto los Términos de Servicio y reconozco la Política de privavcidad</label>
+                    <div className="grupo-register">
+                        <div className="check">
+                            <input type="checkbox" className="checkbox"/>
+                            <label className="label-register">Acepto los Términos de Servicio y reconozco la Política de privavcidad</label>
+                        </div>
                     </div>
                     <div className="btn-register">
-                        <button className="button-regsiter">Crear Cuenta →</button>
+                        <button className="button-register">Crear Cuenta →</button>
                     </div>
                     <div className="text-form">
                         <p>
