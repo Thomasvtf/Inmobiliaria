@@ -1,0 +1,82 @@
+body, html{
+    background-color: #F2F4F6;
+    margin: 0px;
+    padding: 0%;
+    font-family: "Inter";
+    height: 100%;
+}
+.contenedor-register{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 12px;
+}
+
+.card-form {
+    width: 450px;
+    box-shadow: 0px 0px 10px #0004;
+    margin: 15px;
+    padding: 15px 35px; 
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+}
+
+.txt-register{
+    text-align: center;
+}
+
+.grupo-register{
+    width: 100%;
+}
+
+.label-register{
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 5px;
+}
+
+.input-register{
+    border: solid 1px rgb(170, 170, 170);
+    width: 100%;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #F2F4F6;
+}
+
+.link-register{
+    color: #006C49;
+    cursor: pointer;
+}
+
+.check {
+    display: flex;
+}
+
+.checkbox {
+    margin-right: 10px;
+    width: 18px;
+    border: solid 1px rgb(170, 170, 170);
+    cursor: pointer;
+}
+
+.btn-register{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-register {
+    width: 100%;
+    box-sizing: border-box;
+    height: 60px;
+    margin: 25px 0px 15px;
+    background-color: #006C49;
+    color: #FFFFFF;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
