@@ -5,30 +5,30 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 
 function App() {
-
-  const [count, setCount] = useState(0)
   const [paso, setPaso] = useState(1);
 
   return (
     <>
-      
       <div className='interfaz-global'>
         
-        <div>
-          <Navbar/>
-        </div>
+        {/* La Navbar solo se muestra si NO estás en el paso 1 (Login) */}
+        {paso !== 1 && (
+          <div>
+            <Navbar/>
+          </div>
+        )}
 
         <div className='pagina-inicio'>
           {paso === 1 && (
             <Login 
-            siguiente = {() => setPaso(2)}/>
+              siguiente={() => setPaso(2)}
+            />
           )}
         </div>
 
-
-
-
-        <Footer/>
+        {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
+        {paso !== 1 && <Footer/>}
+        
       </div>
     </>
   )

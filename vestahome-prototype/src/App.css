@@ -200,9 +200,9 @@ footer {
 }
 
 .p-foo{
-  margin: 0;
+  margin-right: 55pc;
   font-size: 16px;
-  padding: 10px;
+  margin-left: 10px;
 }
 
 .btn-foo {
