@@ -1,0 +1,21 @@
+.barra-nav{
+    border: 1px solid rgba(175, 175, 175);
+    margin: 20px;
+    width: 700px;
+    height: 40px;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+    gap: 450px;
+    border-radius: 5px;
+
+}
+
+.input-barra{
+    border: none;
+        
+}
+
+.btn-buscar{
+    border-radius: 6px;
+}

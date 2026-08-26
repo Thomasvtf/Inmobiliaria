@@ -1,5 +1,5 @@
 import { useState } from "react"
-import './Register.css'
+import '../css/Register.css'
 
 function Register( {anterior, siguiente}){
 
