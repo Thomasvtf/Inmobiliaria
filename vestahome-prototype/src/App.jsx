@@ -10,14 +10,21 @@ function App() {
   
   return (
     <>
-      <Register/>
 
       <div className='pagina-inicio'>
         {paso === 1 && (
-          <Login 
-          siguiente = {() => setPaso(2)}/>
+          <Login
+          siguiente = {() => setPaso(3)}
+          register = {() => setPaso(2)}/>
         )}
       </div>
+
+      {paso === 2 && (
+        <Register
+        siguiente = {() => setPaso(1)}
+        anterior = {() => setPaso(1)}/>
+      )} 
+
       {paso !== 1 && (
         <div className='interfaz-global'>
           <Navbar/>

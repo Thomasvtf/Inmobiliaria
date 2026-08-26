@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import iconovestahome from "../assets/iconovestahome.png";
-function Login({siguiente}) {
+function Login({siguiente, register}) {
 
   //Función botón continuar
   const continuar = (e) => {
@@ -47,11 +47,11 @@ function Login({siguiente}) {
             </div>
 
             <div className="btn-login">
-              <button className="button-login">Iniciar Sesión</button>
+              <button type='submit' className="button-login">Iniciar Sesión</button>
             </div>
             <div className="text-form">
               <p className="txt-form">
-                ¿No tiene cuenta? <a href="#" className="link-login">Registrese ahora</a>
+                ¿No tiene cuenta? <a onClick={register} className="link-login">Registrese ahora</a>
               </p>
               <a href="#" className="link-login">¿Olvidó du contraseña?</a>
             </div>
