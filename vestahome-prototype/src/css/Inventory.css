@@ -1,3 +1,8 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}  
 .encabezado-inventory{
     display: flex;
     justify-content: space-between;
@@ -14,5 +19,44 @@
     padding: 10px 20px;
     height: 40px;
     cursor: pointer;
+     border-radius: 5px;
+}
+
+.contenedor-filtros{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #ccc;
+    width: auto;
+    height: 50px;
+    padding: 15px;
     border-radius: 5px;
+    background-color: #F2F4F6;
+}
+
+.filtro-estado, .filtro-precio{
+    height: 38px;
+    margin: 20px 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.contenedor-propiedades{
+    margin: 20px;
+    border: 1px solid #ccc;
+    width: auto;
+    height: auto;
+    background-color: #F2F4F6;
+}
+
+.tabla-propiedades{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 10px 20px;
+}
+
+.titulo-tabla{
+    color: #75777E;
 }
