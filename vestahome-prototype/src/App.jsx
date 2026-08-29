@@ -8,6 +8,10 @@ import Inventory from './pages/Inventory'
 
 function App() {
   const [paso, setPaso] = useState(1);
+  const [inmobiliaria, setInmobiliaria] = useState({
+    //Inventario de propiedades
+    inventario: []
+  });
 
   return (
     <>
@@ -36,7 +40,10 @@ function App() {
         )} 
 
         {paso === 3 && (
-          <Inventory/>
+          <Inventory
+          inmobiliaria={inmobiliaria}
+          setInmobiliaria={setInmobiliaria}
+          />
         )}
 
         {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
