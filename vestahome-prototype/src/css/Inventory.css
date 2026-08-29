@@ -1,0 +1,18 @@
+.encabezado-inventory{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.btn-agregar-propiedad{
+    display: flex;
+    align-items: center;
+}
+.button-agregar{
+    background-color: #006C49;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+}

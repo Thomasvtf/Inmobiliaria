@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from "./pages/Register"
+import Inventory from './pages/Inventory'
 
 function App() {
   const [paso, setPaso] = useState(1);
@@ -33,6 +34,10 @@ function App() {
           siguiente = {() => setPaso(1)}
           anterior = {() => setPaso(1)}/>
         )} 
+
+        {paso === 3 && (
+          <Inventory/>
+        )}
 
         {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
         {paso !== 1 && <Footer/>}
