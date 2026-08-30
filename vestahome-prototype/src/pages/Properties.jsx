@@ -7,10 +7,6 @@ import area from '../assets/area.png'
 function Properties({ inmobiliaria, siguiente }){
     return(
         <div className='cont-properties'>
-            <div className='barra-nav'>
-                <input className='input-barra' type="text" placeholder='Buscar por ciudad, barrio o dirección...' />
-                <button className='btn-buscar'>Buscar</button>
-            </div>
                 
             <h1 className='titulo-pro'>Propiedades disponibles</h1>
 
@@ -22,7 +18,7 @@ function Properties({ inmobiliaria, siguiente }){
 
                         <div className="imagen">
                             <img
-                                src={propiedad.fotografias}
+                                src={propiedad.fotografias[0]}
                                 alt={propiedad.titulo}
                             />
                         </div>
@@ -64,7 +60,7 @@ function Properties({ inmobiliaria, siguiente }){
 
                         <button
                             className="btn-cards"
-                            onClick={siguiente}
+                            onClick={() => siguiente(propiedad)}
                         >
                             Ver Detalles
                         </button>

@@ -10,6 +10,9 @@ import Inventory from './pages/Inventory'
 import Detalles from './pages/PropertyDetail'
 
 function App() {
+
+  const [propiedadSeleccionada, setPropiedadSeleccionada] = useState(null);
+
   const [paso, setPaso] = useState(1);
   const [inmobiliaria, setInmobiliaria] = useState({
     //Inventario de propiedades
@@ -42,10 +45,13 @@ function App() {
               />
             )}
 
-            {paso === 3 && (
+           {paso === 3 && (
               <Properties 
-                inmobiliaria = {inmobiliaria}
-                siguiente={() => setPaso(6)} 
+                inmobiliaria={inmobiliaria}
+                siguiente={(propiedad) => {
+                  setPropiedadSeleccionada(propiedad);
+                  setPaso(6);
+                }} 
                 anterior={() => setPaso(1)} 
               />
             )}
@@ -58,15 +64,15 @@ function App() {
 
             {paso === 5 && (
               <Inventory
-              inmobiliaria={inmobiliaria}
-              setInmobiliaria={setInmobiliaria}
+                inmobiliaria={inmobiliaria}
+                setInmobiliaria={setInmobiliaria}
               />
             )}
 
 
             {paso === 6 && (
               <Detalles
-              inmobiliaria={inmobiliaria}
+                propiedad={propiedadSeleccionada}
               />
             )}
 

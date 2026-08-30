@@ -1,0 +1,22 @@
+.contenedor-detalles{
+    margin: 20px;
+    height: 100%;
+}
+
+.imagen{
+    height: 150px;
+    display: flex;
+    gap: 220px;
+}
+
+.imagen-principal{
+    width: 500px;
+    height: 500px;
+}
+
+.otras-imagenes{
+    gap: 20px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+}
