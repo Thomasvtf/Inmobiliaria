@@ -1,0 +1,362 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    background-color: #FFFFFF;
+}  
+.encabezado-inventory{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+}
+.btn-agregar-propiedad{
+    display: flex;
+    align-items: center;
+}
+.button-agregar{
+    background-color: #006C49;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    height: 40px;
+    cursor: pointer;
+     border-radius: 5px;
+}
+
+.contenedor-filtros{
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    border: 1px solid #ccc;
+    width: auto;
+    height: 50px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #F2F4F6;
+}
+
+.filtro-estado, .filtro-precio{
+    height: 38px;
+    margin: 20px 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.contenedor-propiedades{
+    margin: 20px;
+    border: 1px solid #ccc;
+    width: auto;
+    height: auto;
+    background-color: #F2F4F6;
+}
+
+.tabla-propiedades{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 10px 20px;
+}
+
+.titulo-tabla{
+    color: #C8CDD0;
+}
+
+/*Modal*/
+.modal-nativo::backdrop {
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+}
+
+.contenedor-modal{
+    width: 100%;
+    padding: 0px;
+}
+
+.txt-modal {
+    border-bottom: #C8CDD0 1px solid;
+    width: auto;
+    padding: 10px;
+    font-size: 20px;
+}
+
+label{
+    display: block;
+}
+
+.input {
+    height: 35px;
+    border: #C8CDD0 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.subtitulos{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 18px;
+    border-bottom: #C8CDD0 solid 1px;
+}
+
+.icono-subtitulo{
+    width: 20px;
+    margin: 10px;
+}
+
+.secciones{
+    margin: 20px 30px;
+}
+
+.grupo-conceptos{
+    display: flex;
+    gap: 20px;
+}
+
+.grupo-especificaciones{
+    display: flex;
+    gap: 20px;
+}
+
+select{
+    height: 47px;
+    border: #C8CDD0 solid 1px;
+    border-radius: 5px;
+    width: 350px;
+}
+.grupo{
+    margin-top: 15px;
+}
+
+.precio{
+    height: 35px;
+    border: #C8CDD0 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    width: 350px;
+}
+
+textarea{
+    width: 100%;
+    height: 100px;
+    border: #C8CDD0 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* 1. Contenedor que rodea al input */
+.grupo {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 2. Transformación visual del input ocultando los botones feos nativos */
+.grupo input[type="file"].input {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    border: 2px dashed #C8CDD0; /* Borde punteado de la imagen */
+    border-radius: 8px;
+    background-color: #F8F9FA; /* Fondo gris claro */
+    cursor: pointer;
+    color: transparent; /* Esconde los textos nativos del navegador */
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+/* Efecto hover al pasar el mouse */
+.grupo input[type="file"].input:hover {
+    background-color: #F1F3F4;
+    border-color: #006C49; /* Borde verde de tu marca */
+}
+
+/* Oculta los botones por defecto en Chrome, Safari, Edge y Firefox */
+.grupo input[type="file"].input::-webkit-file-upload-button { display: none; }
+.grupo input[type="file"].input::file-selector-button { display: none; }
+
+/* 3. El cuadro gris con el icono de la nube (Exacto a la imagen) */
+.grupo:has(input[type="file"].input)::before {
+    content: "";
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 44px;
+    background-color: #E8EAED;
+    border-radius: 8px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://w3.org' fill='%235F6368' viewBox='0 0 24 24'%3E%3Cpath d='M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3zm-5.5-5v-3h-3v3H8l4 4 4-4h-2.5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* 4. Textos informativos de la imagen organizados por líneas (\A) */
+.grupo:has(input[type="file"].input)::after {
+    content: "Subir Fotografías\A Arrastre y suelte sus imágenes aquí, o haga clic para navegar.\A Formatos recomendados: JPG, PNG, alta resolución (mín 1920×1080).";
+    white-space: pre-wrap;
+    position: absolute;
+    top: 90px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    color: #5F6368;
+    line-height: 1.6;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    border-top: #C8CDD0 solid 1px;
+}
+
+.button{
+    border:none;
+    height: 46px;
+    padding: 15px;
+    color: #FFFFFF;
+    background-color: #006C49;
+    border-radius: 5px;
+    margin: 20px;
+    cursor: pointer;
+}   
+
+.button-cancelar{
+    border:solid 1px #000000;
+    height: 46px;
+    padding: 15px;
+    color: #000000;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    margin: 20px 0px;
+    cursor: pointer;
+}
+
+tbody{
+    background-color: #FFFFFF;
+}
+
+.img-accion{
+    width: 50px;
+}
+
+.btn-accion{
+    background: transparent;
+    border: none;
+    margin:10px;
+    cursor: pointer;
+}
+
+.contenedor-propiedades {
+    margin: 20px;
+    border: 1px solid #C8CDD0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+
+.tabla-propiedades {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-propiedades thead {
+    background-color: #F2F4F6;
+}
+
+.tabla-propiedades th {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.titulo-tabla {
+    color: #73777A;
+}
+
+.acciones-titulo {
+    text-align: right;
+}
+
+/* FILAS */
+
+.fila-propiedad {
+    border-top: 1px solid #D9DDDF;
+}
+
+.fila-propiedad td {
+    padding: 14px 20px;
+}
+
+/* INFORMACIÓN DE LA PROPIEDAD */
+
+.info-propiedad {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100px;
+}
+
+.imagen-propiedad {
+    width: 80px;
+    height: 63px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.imagen-vacia {
+    width: 80px;
+    height: 63px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E9ECEF;
+    color: #777;
+    font-size: 9px;
+    border-radius: 2px;
+}
+
+.datos-propiedad {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.datos-propiedad strong {
+    font-size: 17px;
+    color: #25282A;
+}
+
+.datos-propiedad span {
+    font-size: 12px;
+    color: #4D5357;
+}
+
+/* PRECIO */
+
+.precio-propiedad {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202427;
+}
+
+/* ACCIONES */
+
+.acciones-propiedad {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+

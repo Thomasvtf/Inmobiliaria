@@ -6,9 +6,15 @@ import Login from './pages/Login'
 import Register from "./pages/Register"
 import Properties from './pages/Properties'
 import Visits from './pages/Visits'
+import Inventory from './pages/Inventory'
+import Detalles from './pages/PropertyDetail'
 
 function App() {
   const [paso, setPaso] = useState(1);
+  const [inmobiliaria, setInmobiliaria] = useState({
+    //Inventario de propiedades
+    inventario: []
+  });
 
   return (
     <>
@@ -43,19 +49,31 @@ function App() {
               />
             )}
 
+            {paso === 5 && (
+              <Inventory
+              inmobiliaria={inmobiliaria}
+              setInmobiliaria={setInmobiliaria}
+              />
+            )}
+
             {paso === 4 && (
               <Visits 
                 anterior={() => setPaso(3)} 
               />
             )}
 
+            {paso === 6 && (
+              <Detalles
+              inmobiliaria={inmobiliaria}
+              />
+            )}
+
           </div>
         </main>
         
-        {/* El Footer solo aparece en las secciones internas (Properties y Visits) */}
-        {paso !== 1 && paso !== 2 && (
-          <Footer />
-        )}
+
+        {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
+        {paso !== 1 && <Footer/>}
         
       </div>
     </>
