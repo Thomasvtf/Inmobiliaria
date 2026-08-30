@@ -240,3 +240,122 @@ textarea{
     margin: 20px 0px;
     cursor: pointer;
 }
+
+tbody{
+    background-color: #FFFFFF;
+}
+
+.img-accion{
+    width: 50px;
+}
+
+.btn-accion{
+    background: transparent;
+    border: none;
+    margin:10px;
+    cursor: pointer;
+}
+
+.contenedor-propiedades {
+    margin: 20px;
+    border: 1px solid #C8CDD0;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #FFFFFF;
+}
+
+.tabla-propiedades {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-propiedades thead {
+    background-color: #F2F4F6;
+}
+
+.tabla-propiedades th {
+    height: 40px;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.titulo-tabla {
+    color: #73777A;
+}
+
+.acciones-titulo {
+    text-align: right;
+}
+
+/* FILAS */
+
+.fila-propiedad {
+    border-top: 1px solid #D9DDDF;
+}
+
+.fila-propiedad td {
+    padding: 14px 20px;
+}
+
+/* INFORMACIÓN DE LA PROPIEDAD */
+
+.info-propiedad {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.imagen-propiedad {
+    width: 55px;
+    height: 38px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.imagen-vacia {
+    width: 55px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E9ECEF;
+    color: #777;
+    font-size: 9px;
+    border-radius: 2px;
+}
+
+.datos-propiedad {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.datos-propiedad strong {
+    font-size: 17px;
+    color: #25282A;
+}
+
+.datos-propiedad span {
+    font-size: 12px;
+    color: #4D5357;
+}
+
+/* PRECIO */
+
+.precio-propiedad {
+    font-size: 14px;
+    font-weight: 600;
+    color: #202427;
+}
+
+/* ACCIONES */
+
+.acciones-propiedad {
+    text-align: right;
+    white-space: nowrap;
+}
+
+
+

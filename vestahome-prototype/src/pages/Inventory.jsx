@@ -6,6 +6,8 @@ import gps from '../assets/gps.png'
 import escuadra from '../assets/escuadra.png'
 import doc from '../assets/doc.png'
 import img from '../assets/img.png'
+import lapiz from '../assets/lapiz.png'
+import caneca from '../assets/caneca.png'
 function Inventory({ inmobiliaria, setInmobiliaria }) {
     
     // Controlar el Modal
@@ -108,17 +110,64 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                     <thead>
                         <tr>
                             <th className="titulo-tabla">PROPIEDAD</th>
-                            <th className="titulo-tabla">ESTADO</th>
                             <th className="titulo-tabla">PRECIO</th>
-                            <th className="titulo-tabla">VISTAS</th>
                             <th className="titulo-tabla">ACCIONES</th>
                         </tr>
-                        <td>
-
-                        </td>
                     </thead>
                     <tbody>
-                    
+                             {(inmobiliaria.inventario || []).map((propiedad, index) => (
+                                <tr key={index} className="fila-propiedad">
+
+                                    {/* PROPIEDAD */}
+                                    <td className="info-propiedad">
+
+                                        {propiedad.fotografias ? (
+                                            <img
+                                                src={propiedad.fotografias}
+                                                alt={propiedad.titulo}
+                                                className="imagen-propiedad"
+                                            />
+                                        ) : (
+                                            <div className="imagen-vacia">
+                                                Sin foto
+                                            </div>
+                                        )}
+
+                                        <div className="datos-propiedad">
+                                            <strong>{propiedad.titulo}</strong>
+                                            <span>{propiedad.direccion}</span>
+                                        </div>
+
+                                    </td>
+
+                                    {/* PRECIO */}
+                                    <td className="precio-propiedad">
+                                        ${Number(propiedad.precio).toLocaleString()}
+                                    </td>
+
+                                    {/* ACCIONES */}
+                                    <td className="acciones-propiedad">
+
+                                        <button
+                                            type="button"
+                                            className="btn-accion"
+                                            title="Editar"
+                                        >
+                                            <img className='img-accion' src= {lapiz} alt="" />
+                                        </button>
+
+                                        <button
+                                            type="button"
+                                            className="btn-accion"
+                                            title="Eliminar"
+                                        >
+                                            <img className='img-accion' src= {caneca} alt="" />
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+                            ))}
                     </tbody>
                 </table>    
             </div>
@@ -294,11 +343,15 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                         </div>
 
                         <div className="grupo">
-                            <input type="file" accept="image/*" className="input"
+                           <input
+                            type="file"
+                            accept="image/*"
+                            className="input"
                             onChange={(e) => {
                                 const archivo = e.target.files[0];
+
                                 if (archivo) {
-                                    setInmobiliaria({...inmobiliaria,fotografias: URL.createObjectURL(archivo)});
+                                    setFotografias(URL.createObjectURL(archivo));
                                 }
                             }}
                         />
