@@ -1,0 +1,64 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 10px 0;
+}
+
+.textos-vis {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.h1-vis {
+    margin: 0 0 5px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #000000;
+}
+
+.p-vis {
+    margin: 0;
+    color: #191C1E;
+    font-size: 14px;
+}
+
+.btn-horario {
+    background-color: #006C49;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-horario-style {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.tabs-citas {
+    display: flex;
+    border-bottom: 1px solid #e5e5e5;
+    width: 100%;
+    padding-left: 10px;
+}
+
+.btn-tab-citas {
+    text-decoration: none;
+    color: #5c5e62;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 12px;
+    border-bottom: 3px solid transparent;
+}
+
+.btn-tab-citas.active {
+    color: #006C49;
+    border-bottom: 3px solid #006C49;
+}

@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from "./pages/Register"
 import Properties from './pages/Properties'
-import Visits from './pages/Visits'
+import Dates from './pages/Dates'
 
 function App() {
   const [paso, setPaso] = useState(1);
@@ -44,7 +44,7 @@ function App() {
             )}
 
             {paso === 4 && (
-              <Visits 
+              <Dates 
                 anterior={() => setPaso(3)} 
               />
             )}
