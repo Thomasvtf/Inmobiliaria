@@ -44,8 +44,15 @@ function App() {
 
             {paso === 3 && (
               <Properties 
-                siguiente={() => setPaso(4)} 
+                inmobiliaria = {inmobiliaria}
+                siguiente={() => setPaso(6)} 
                 anterior={() => setPaso(1)} 
+              />
+            )}
+
+            {paso === 4 && (
+              <Visits 
+                anterior={() => setPaso(3)} 
               />
             )}
 
@@ -56,11 +63,6 @@ function App() {
               />
             )}
 
-            {paso === 4 && (
-              <Visits 
-                anterior={() => setPaso(3)} 
-              />
-            )}
 
             {paso === 6 && (
               <Detalles
