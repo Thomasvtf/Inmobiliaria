@@ -8,6 +8,7 @@ import doc from '../assets/doc.png'
 import img from '../assets/img.png'
 import lapiz from '../assets/lapiz.png'
 import caneca from '../assets/caneca.png'
+
 function Inventory({ inmobiliaria, setInmobiliaria }) {
     
     // Controlar el Modal
@@ -35,7 +36,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
         e.preventDefault();
 
         // Objeto de experiencia laboral válido
-            const nuevaPropiedad = {
+            const propiedad = {
                 titulo: titulo.trim(),
                 tipo: tipo.trim(),
                 precio: precio.trim(),
@@ -50,13 +51,31 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                 fotografias: fotografias.trim()
             };
 
-        setInmobiliaria({
-            ...inmobiliaria,
-            inventario: [
-                ...(inmobiliaria.inventario || []),
-                nuevaPropiedad
-            ]
-        });
+            // Si estamos editando
+            if (propiedadEditando !== null) {
+
+                const inventarioActualizado = [
+                    ...inmobiliaria.inventario
+                ];
+
+                inventarioActualizado[propiedadEditando] = propiedad;
+
+                setInmobiliaria({
+                    ...inmobiliaria,
+                    inventario: inventarioActualizado
+                });
+
+            } else {
+
+                // Si estamos registrando
+                setInmobiliaria({
+                    ...inmobiliaria,
+                    inventario: [
+                        ...(inmobiliaria.inventario || []),
+                        propiedad
+                    ]
+                });
+            }
 
         
         // Limpieza de campos del modal
@@ -72,10 +91,47 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
         setEstacionamientos("");
         setDescripcion("");
         setFotografias("");
-        setErrorModal({});
 
-        // Cerrar el modal
+        setErrorModal({});
+        setPropiedadEditando(null);
+
         setModalAbierto(false);
+    };
+
+    //Eliminar propiedad
+    const eliminarPropiedad = (index) => {
+        const propiedadesActualizadas = (inmobiliaria.inventario || []).filter(
+            (_, i) => i !== index
+        );
+
+        setInmobiliaria({
+            ...inmobiliaria,
+            inventario: propiedadesActualizadas
+        });
+    };
+
+    //Editar propiedad
+    const [propiedadEditando, setPropiedadEditando] = useState(null);
+    
+    const editarPropiedad = (index) => {
+        const propiedad = inmobiliaria.inventario[index];
+
+            setPropiedadEditando(index);
+
+            setTitulo(propiedad.titulo);
+            setTipo(propiedad.tipo);
+            setPrecio(propiedad.precio);
+            setDireccion(propiedad.direccion);
+            setCiudad(propiedad.ciudad);
+            setBarrio(propiedad.barrio);
+            setHabitaciones(propiedad.habitaciones);
+            setBanos(propiedad.banos);
+            setArea(propiedad.area);
+            setEstacionamientos(propiedad.estacionamientos);
+            setDescripcion(propiedad.descripcion);
+            setFotografias(propiedad.fotografias);
+
+            setModalAbierto(true);
     };
 
     // 2. FUNCIONES AUXILIARES PARA LIMPIAR ERRORES EN TIEMPO REAL AL ESCRIBIR
@@ -94,7 +150,29 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                     <p>Administre y supervise sus anuncios activos en la red VestaHome</p>
                 </div>
                 <div className="btn-agregar-propiedad">
-                    <button className="button-agregar" onClick={() => setModalAbierto(true)}>+ Agregar Nueva Propiedad</button>
+                    <button
+                        className="button-agregar"
+                        onClick={() => {
+                            setPropiedadEditando(null);
+
+                            setTitulo("");
+                            setTipo("");
+                            setPrecio("");
+                            setDireccion("");
+                            setCiudad("");
+                            setBarrio("");
+                            setHabitaciones("");
+                            setBanos("");
+                            setArea("");
+                            setEstacionamientos("");
+                            setDescripcion("");
+                            setFotografias("");
+
+                            setModalAbierto(true);
+                        }}
+                    >
+                        + Agregar Nueva Propiedad
+                    </button>
                 </div>
             </div>
             <div className="contenedor-filtros">
@@ -152,6 +230,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                                             type="button"
                                             className="btn-accion"
                                             title="Editar"
+                                            onClick={() => editarPropiedad(index)}
                                         >
                                             <img className='img-accion' src= {lapiz} alt="" />
                                         </button>
@@ -160,8 +239,9 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                                             type="button"
                                             className="btn-accion"
                                             title="Eliminar"
+                                            onClick={() => eliminarPropiedad(index)}
                                         >
-                                            <img className='img-accion' src= {caneca} alt="" />
+                                            <img className='img-accion' src= {caneca}/>
                                         </button>
 
                                     </td>
@@ -181,7 +261,12 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
             >
                 <div className="contenedor-modal">
                     <div className="txt-modal">
-                        <h3>Añadir Nueva Propiedad</h3>
+                        <h3>
+                            {propiedadEditando !== null
+                                ? "Editar Propiedad"
+                                : "Añadir Nueva Propiedad"
+                            }
+                        </h3>
                         <p>Complete los detalles para listar una nueva propiedad en VestaHome</p>
                     </div>
                     <form onSubmit={guardarPropiedad} noValidate className="formulario-modal">
@@ -359,8 +444,13 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                     </div>
 
                         <div className="botones" style={{ marginTop: "15px" }}>
-                            <button className="button-cancelar" type="">Cancelar</button>
-                            <button className="button" type="submit">Registrar Propiedad</button>
+                            <button className="button-cancelar" type=''>Cancelar</button>
+                            <button className="button" type="submit">
+                                {propiedadEditando !== null
+                                    ? "Guardar Cambios"
+                                    : "Registrar Propiedad"
+                                }
+                            </button>
                         </div>
                     </form>
                 </div>

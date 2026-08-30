@@ -305,18 +305,19 @@ tbody{
     display: flex;
     align-items: center;
     gap: 20px;
+    height: 100px;
 }
 
 .imagen-propiedad {
-    width: 55px;
-    height: 38px;
+    width: 80px;
+    height: 63px;
     object-fit: cover;
     border-radius: 2px;
 }
 
 .imagen-vacia {
-    width: 55px;
-    height: 38px;
+    width: 80px;
+    height: 63px;
     display: flex;
     align-items: center;
     justify-content: center;
