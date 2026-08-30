@@ -5,44 +5,57 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from "./pages/Register"
 import Properties from './pages/Properties'
+import Visits from './pages/Visits'
 
 function App() {
   const [paso, setPaso] = useState(1);
 
   return (
     <>
-
-      
       <div className='interfaz-global'>
-        <div className='pagina-inicio'>
-          {paso === 1 && (
-            <Login
-            siguiente = {() => setPaso(3)}
-            register = {() => setPaso(2)}/>
-          )}
-        </div>
         
-        {/* La Navbar solo se muestra si NO estás en el paso 1 (Login) */}
+        {/* La Navbar solo aparece en las secciones internas (Properties y Visits) */}
         {paso !== 1 && paso !== 2 && (
-          <div>
-            <Navbar/>
+          <Navbar setPaso={setPaso} paso={paso} />
+        )}
+
+        <main className="seccion-principal">
+          <div className="contenedor">
+            
+            {paso === 1 && (
+              <Login 
+                siguiente={() => setPaso(3)} 
+                register={() => setPaso(2)} 
+              />
+            )}
+
+            {paso === 2 && (
+              <Register 
+                siguiente={() => setPaso(1)} 
+                anterior={() => setPaso(1)} 
+              />
+            )}
+
+            {paso === 3 && (
+              <Properties 
+                siguiente={() => setPaso(4)} 
+                anterior={() => setPaso(1)} 
+              />
+            )}
+
+            {paso === 4 && (
+              <Visits 
+                anterior={() => setPaso(3)} 
+              />
+            )}
+
           </div>
+        </main>
+        
+        {/* El Footer solo aparece en las secciones internas (Properties y Visits) */}
+        {paso !== 1 && paso !== 2 && (
+          <Footer />
         )}
-
-        {paso === 2 && (
-          <Register
-          siguiente = {() => setPaso(1)}
-          anterior = {() => setPaso(1)}/>
-        )} 
-
-        {paso === 3 && (
-          <Properties
-          siguiente = {() => setPaso(3)}
-          anterior = {() => setPaso(2)}/> 
-        )}
-
-        {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
-        {paso !== 1 && <Footer/>}
         
       </div>
     </>
