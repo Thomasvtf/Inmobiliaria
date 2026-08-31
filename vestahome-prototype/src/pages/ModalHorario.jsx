@@ -10,9 +10,44 @@ function ModalHorario({ isOpen, onClose }) {
     const guardarHorario = (e) => {
         e.preventDefault();
 
-        if (fecha === '' || horaInicio === '' || horaFin === '') {
+        if (
+            fecha === '' ||
+            horaInicio === '' ||
+            horaFin === ''
+        ) {
             return;
         }
+
+        if (horaFin <= horaInicio) {
+            return;
+        }
+
+        const horarios =
+            JSON.parse(
+                localStorage.getItem('horarios')
+            ) || [];
+
+        const nuevoHorario = {
+            id: Date.now(),
+            fecha: fecha,
+            horaInicio: horaInicio,
+            horaFin: horaFin,
+            repetir: repetir
+        };
+
+        const horariosActualizados = [
+            ...horarios,
+            nuevoHorario
+        ];
+
+        localStorage.setItem(
+            'horarios',
+            JSON.stringify(horariosActualizados)
+        );
+
+        window.dispatchEvent(
+            new Event('horariosActualizados')
+        );
 
         setFecha('');
         setHoraInicio('');
@@ -27,14 +62,23 @@ function ModalHorario({ isOpen, onClose }) {
     }
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
+        <div
+            className="modal-overlay"
+            onClick={onClose}
+        >
+
             <div
                 className="modal-horario"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) =>
+                    e.stopPropagation()
+                }
             >
 
                 <div className="modal-horario-header">
-                    <h2>Crear Horario</h2>
+
+                    <h2>
+                        Crear Horario
+                    </h2>
 
                     <button
                         className="close-btn"
@@ -42,6 +86,7 @@ function ModalHorario({ isOpen, onClose }) {
                     >
                         ×
                     </button>
+
                 </div>
 
                 <p className="modal-horario-texto">
@@ -51,35 +96,59 @@ function ModalHorario({ isOpen, onClose }) {
                 <form onSubmit={guardarHorario}>
 
                     <div className="campo-horario">
-                        <label>Fecha</label>
+
+                        <label>
+                            Fecha
+                        </label>
 
                         <input
                             type="date"
                             value={fecha}
-                            onChange={(e) => setFecha(e.target.value)}
+                            onChange={(e) =>
+                                setFecha(
+                                    e.target.value
+                                )
+                            }
                         />
+
                     </div>
 
                     <div className="horas-horario">
 
                         <div className="campo-horario">
-                            <label>Hora de inicio</label>
+
+                            <label>
+                                Hora de inicio
+                            </label>
 
                             <input
                                 type="time"
                                 value={horaInicio}
-                                onChange={(e) => setHoraInicio(e.target.value)}
+                                onChange={(e) =>
+                                    setHoraInicio(
+                                        e.target.value
+                                    )
+                                }
                             />
+
                         </div>
 
                         <div className="campo-horario">
-                            <label>Hora de finalización</label>
+
+                            <label>
+                                Hora de finalización
+                            </label>
 
                             <input
                                 type="time"
                                 value={horaFin}
-                                onChange={(e) => setHoraFin(e.target.value)}
+                                onChange={(e) =>
+                                    setHoraFin(
+                                        e.target.value
+                                    )
+                                }
                             />
+
                         </div>
 
                     </div>
@@ -89,7 +158,11 @@ function ModalHorario({ isOpen, onClose }) {
                         <input
                             type="checkbox"
                             checked={repetir}
-                            onChange={(e) => setRepetir(e.target.checked)}
+                            onChange={(e) =>
+                                setRepetir(
+                                    e.target.checked
+                                )
+                            }
                         />
 
                         <label>
@@ -120,6 +193,7 @@ function ModalHorario({ isOpen, onClose }) {
                 </form>
 
             </div>
+
         </div>
     );
 }

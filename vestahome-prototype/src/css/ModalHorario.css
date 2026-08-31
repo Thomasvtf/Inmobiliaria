@@ -12,12 +12,13 @@
 }
 
 .modal-horario {
-    width: 450px;
+    width: 430px;
+    max-width: 90%;
     background-color: white;
-    border-radius: 8px;
-    padding: 28px;
+    border-radius: 7px;
+    padding: 25px;
     box-sizing: border-box;
-    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
 }
 
 .modal-horario-header {
@@ -29,21 +30,21 @@
 
 .modal-horario-header h2 {
     margin: 0;
+    color: #191c1e;
     font-size: 20px;
-    color: #191C1E;
 }
 
 .close-btn {
     background: none;
     border: none;
-    font-size: 24px;
     color: #5c5e62;
+    font-size: 25px;
     cursor: pointer;
     padding: 0;
 }
 
 .modal-horario-texto {
-    margin: 0 0 24px 0;
+    margin: 0 0 22px 0;
     color: #5c5e62;
     font-size: 13px;
     line-height: 1.5;
@@ -56,40 +57,38 @@
 }
 
 .campo-horario label {
-    font-size: 13px;
-    color: #191C1E;
+    color: #191c1e;
+    font-size: 12px;
     margin-bottom: 7px;
 }
 
 .campo-horario input {
     width: 100%;
-    box-sizing: border-box;
-    padding: 10px;
+    height: 38px;
     border: 1px solid #d1d5d9;
-    border-radius: 6px;
-    font-size: 13px;
-    color: #191C1E;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-size: 12px;
     outline: none;
 }
 
 .campo-horario input:focus {
-    border-color: #006C49;
+    border-color: #006c49;
 }
 
 .horas-horario {
-    display: flex;
-    gap: 15px;
-}
-
-.horas-horario .campo-horario {
-    width: 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
 }
 
 .repetir-horario {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin-bottom: 25px;
+    margin: 4px 0 25px 0;
 }
 
 .repetir-horario input {
@@ -97,8 +96,8 @@
 }
 
 .repetir-horario label {
-    font-size: 13px;
-    color: #5c5e62;
+    color: #191c1e;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -109,12 +108,12 @@
 }
 
 .cancelar-horario {
+    border: 1px solid #bfc3c7;
     background-color: white;
-    color: #191C1E;
-    border: 1px solid #d1d5d9;
+    color: #4f5357;
+    border-radius: 5px;
     padding: 10px 18px;
-    border-radius: 6px;
-    font-size: 13px;
+    font-size: 12px;
     cursor: pointer;
 }
 
@@ -123,16 +122,32 @@
 }
 
 .guardar-horario {
-    background-color: #006C49;
-    color: white;
     border: none;
+    background-color: #006c49;
+    color: white;
+    border-radius: 5px;
     padding: 10px 18px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: 600;
     cursor: pointer;
 }
 
 .guardar-horario:hover {
     background-color: #00583c;
+}
+
+@media (max-width: 500px) {
+    .horas-horario {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .botones-horario {
+        flex-direction: column;
+    }
+
+    .cancelar-horario,
+    .guardar-horario {
+        width: 100%;
+    }
 }

@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../css/ModalDates.css';
 
-function ModalDates({ isOpen, onClose, apartamento, horarios }) {
-    const [fecha, setFecha] = useState(new Date(2024, 10, 6));
-    const [horaSeleccionada, setHoraSeleccionada] = useState('');
-    const [comentario, setComentario] = useState('');
+function ModalDates({
+    isOpen,
+    onClose,
+    apartamento
+}) {
+    const [fecha, setFecha] = useState(
+        new Date()
+    );
+
+    const [horaSeleccionada, setHoraSeleccionada] =
+        useState('');
+
+    const [nombre, setNombre] =
+        useState('');
+
+    const [comentario, setComentario] =
+        useState('');
+
+    const [horarios, setHorarios] =
+        useState([]);
 
     const meses = [
         'Enero',
@@ -21,7 +37,75 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
         'Diciembre'
     ];
 
-    const diasSemana = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
+    const diasSemana = [
+        'D',
+        'L',
+        'M',
+        'X',
+        'J',
+        'V',
+        'S'
+    ];
+
+    const cargarHorarios = () => {
+        const horariosGuardados =
+            JSON.parse(
+                localStorage.getItem('horarios')
+            ) || [];
+
+        setHorarios(horariosGuardados);
+    };
+
+    useEffect(() => {
+        if (!isOpen) {
+            return;
+        }
+
+        cargarHorarios();
+
+        window.addEventListener(
+            'horariosActualizados',
+            cargarHorarios
+        );
+
+        window.addEventListener(
+            'storage',
+            cargarHorarios
+        );
+
+        return () => {
+            window.removeEventListener(
+                'horariosActualizados',
+                cargarHorarios
+            );
+
+            window.removeEventListener(
+                'storage',
+                cargarHorarios
+            );
+        };
+    }, [isOpen]);
+
+    useEffect(() => {
+        setHoraSeleccionada('');
+    }, [fecha]);
+
+    const crearFechaTexto = (date) => {
+        const año =
+            date.getFullYear();
+
+        const mes =
+            String(
+                date.getMonth() + 1
+            ).padStart(2, '0');
+
+        const dia =
+            String(
+                date.getDate()
+            ).padStart(2, '0');
+
+        return `${año}-${mes}-${dia}`;
+    };
 
     const cambiarMes = (cantidad) => {
         setFecha(
@@ -34,23 +118,52 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
     };
 
     const obtenerDias = () => {
-        const año = fecha.getFullYear();
-        const mes = fecha.getMonth();
+        const año =
+            fecha.getFullYear();
 
-        const primerDia = new Date(año, mes, 1).getDay();
-        const cantidadDias = new Date(año, mes + 1, 0).getDate();
-        const cantidadDiasAnterior = new Date(año, mes, 0).getDate();
+        const mes =
+            fecha.getMonth();
+
+        const primerDia =
+            new Date(
+                año,
+                mes,
+                1
+            ).getDay();
+
+        const cantidadDias =
+            new Date(
+                año,
+                mes + 1,
+                0
+            ).getDate();
+
+        const cantidadDiasAnterior =
+            new Date(
+                año,
+                mes,
+                0
+            ).getDate();
 
         const dias = [];
 
-        for (let i = primerDia - 1; i >= 0; i--) {
+        for (
+            let i = primerDia - 1;
+            i >= 0;
+            i--
+        ) {
             dias.push({
-                numero: cantidadDiasAnterior - i,
+                numero:
+                    cantidadDiasAnterior - i,
                 tipo: 'anterior'
             });
         }
 
-        for (let i = 1; i <= cantidadDias; i++) {
+        for (
+            let i = 1;
+            i <= cantidadDias;
+            i++
+        ) {
             dias.push({
                 numero: i,
                 tipo: 'actual'
@@ -59,7 +172,7 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
 
         let siguiente = 1;
 
-        while (dias.length < 35) {
+        while (dias.length < 42) {
             dias.push({
                 numero: siguiente,
                 tipo: 'siguiente'
@@ -72,36 +185,148 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
     };
 
     const seleccionarDia = (dia) => {
-        if (dia.tipo === 'actual') {
-            setFecha(
-                new Date(
-                    fecha.getFullYear(),
-                    fecha.getMonth(),
-                    dia.numero
-                )
-            );
+        if (dia.tipo !== 'actual') {
+            return;
         }
+
+        setFecha(
+            new Date(
+                fecha.getFullYear(),
+                fecha.getMonth(),
+                dia.numero
+            )
+        );
+    };
+
+    const horariosDisponibles =
+        horarios.filter(
+            (horario) =>
+                horario.fecha ===
+                crearFechaTexto(fecha)
+        );
+
+    const formatearHora = (hora) => {
+        if (!hora) {
+            return '';
+        }
+
+        const partes =
+            hora.split(':');
+
+        let horas =
+            Number(partes[0]);
+
+        const minutos =
+            partes[1];
+
+        const periodo =
+            horas >= 12
+                ? 'PM'
+                : 'AM';
+
+        horas =
+            horas % 12;
+
+        if (horas === 0) {
+            horas = 12;
+        }
+
+        return `${horas}:${minutos} ${periodo}`;
     };
 
     const confirmarCita = () => {
-        if (horaSeleccionada === '') {
+        if (
+            nombre.trim() === '' ||
+            horaSeleccionada === ''
+        ) {
             return;
         }
+
+        const horario =
+            horariosDisponibles.find(
+                (item) =>
+                    item.horaInicio ===
+                    horaSeleccionada
+            );
+
+        if (!horario) {
+            return;
+        }
+
+        const citas =
+            JSON.parse(
+                localStorage.getItem('citas')
+            ) || [];
+
+        const nuevaCita = {
+            id: Date.now(),
+
+            nombre:
+                nombre.trim(),
+
+            lugar:
+                apartamento.nombre,
+
+            ubicacion:
+                apartamento.ubicacion,
+
+            fecha:
+                crearFechaTexto(fecha),
+
+            hora:
+                horario.horaInicio,
+
+            horaFin:
+                horario.horaFin,
+
+            comentario:
+                comentario.trim(),
+
+            estado:
+                'Pendiente'
+        };
+
+        const citasActualizadas = [
+            ...citas,
+            nuevaCita
+        ];
+
+        localStorage.setItem(
+            'citas',
+            JSON.stringify(
+                citasActualizadas
+            )
+        );
+
+        window.dispatchEvent(
+            new Event('citasActualizadas')
+        );
+
+        setNombre('');
+        setComentario('');
+        setHoraSeleccionada('');
 
         onClose();
     };
 
-    if (!isOpen) {
+    if (!isOpen || !apartamento) {
         return null;
     }
 
-    const dias = obtenerDias();
+    const dias =
+        obtenerDias();
 
     return (
-        <div className="modal-overlay" onClick={onClose}>
+        <div
+            className="modal-overlay"
+            onClick={onClose}
+        >
+
             <div
                 className="modal-container"
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) =>
+                    e.stopPropagation()
+                }
             >
 
                 <div className="modal-left">
@@ -109,7 +334,8 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
                     <div
                         className="property-image-placeholder"
                         style={{
-                            backgroundImage: `url(${apartamento.imagen})`
+                            backgroundImage:
+                                `url(${apartamento.imagen})`
                         }}
                     >
 
@@ -146,24 +372,74 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
 
                     </div>
 
+                    <div className="datos-cita">
+
+                        <div className="campo-cita">
+
+                            <label>
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                value={nombre}
+                                onChange={(e) =>
+                                    setNombre(
+                                        e.target.value
+                                    )
+                                }
+                                placeholder="Ingrese su nombre"
+                            />
+
+                        </div>
+
+                        <div className="campo-cita">
+
+                            <label>
+                                Lugar de la visita
+                            </label>
+
+                            <input
+                                type="text"
+                                value={
+                                    apartamento.nombre
+                                }
+                                readOnly
+                            />
+
+                        </div>
+
+                    </div>
+
                     <div className="calendar-section">
 
                         <div className="calendar-month">
 
                             <span>
-                                {meses[fecha.getMonth()]} {fecha.getFullYear()}
+                                {
+                                    meses[
+                                        fecha.getMonth()
+                                    ]
+                                }{' '}
+                                {
+                                    fecha.getFullYear()
+                                }
                             </span>
 
                             <div className="calendar-arrows">
 
                                 <button
-                                    onClick={() => cambiarMes(-1)}
+                                    onClick={() =>
+                                        cambiarMes(-1)
+                                    }
                                 >
                                     ‹
                                 </button>
 
                                 <button
-                                    onClick={() => cambiarMes(1)}
+                                    onClick={() =>
+                                        cambiarMes(1)
+                                    }
                                 >
                                     ›
                                 </button>
@@ -174,36 +450,63 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
 
                         <div className="calendar-grid-days">
 
-                            {diasSemana.map((dia) => (
-                                <span
-                                    className="calendar-week"
-                                    key={dia}
-                                >
-                                    {dia}
-                                </span>
-                            ))}
-
-                            {dias.map((dia, index) => {
-
-                                const seleccionado =
-                                    dia.tipo === 'actual' &&
-                                    dia.numero === fecha.getDate();
-
-                                return (
-                                    <button
-                                        key={index}
-                                        className={`
-                                            calendar-day
-                                            ${dia.tipo !== 'actual' ? 'other-month' : ''}
-                                            ${seleccionado ? 'selected-day' : ''}
-                                        `}
-                                        onClick={() => seleccionarDia(dia)}
-                                        disabled={dia.tipo !== 'actual'}
+                            {diasSemana.map(
+                                (dia) => (
+                                    <span
+                                        className="calendar-week"
+                                        key={dia}
                                     >
-                                        {dia.numero}
-                                    </button>
-                                );
-                            })}
+                                        {dia}
+                                    </span>
+                                )
+                            )}
+
+                            {dias.map(
+                                (
+                                    dia,
+                                    index
+                                ) => {
+
+                                    const seleccionado =
+                                        dia.tipo ===
+                                            'actual' &&
+                                        dia.numero ===
+                                            fecha.getDate();
+
+                                    return (
+                                        <button
+                                            key={index}
+                                            className={`
+                                                calendar-day
+                                                ${
+                                                    dia.tipo !==
+                                                    'actual'
+                                                        ? 'other-month'
+                                                        : ''
+                                                }
+                                                ${
+                                                    seleccionado
+                                                        ? 'selected-day'
+                                                        : ''
+                                                }
+                                            `}
+                                            onClick={() =>
+                                                seleccionarDia(
+                                                    dia
+                                                )
+                                            }
+                                            disabled={
+                                                dia.tipo !==
+                                                'actual'
+                                            }
+                                        >
+                                            {
+                                                dia.numero
+                                            }
+                                        </button>
+                                    );
+                                }
+                            )}
 
                         </div>
 
@@ -217,22 +520,49 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
 
                         <div className="hours-grid">
 
-                            {horarios.map((hora, index) => (
+                            {horariosDisponibles.length === 0 ? (
 
-                                <button
-                                    key={index}
-                                    className={`
-                                        hour-btn
-                                        ${hora === horaSeleccionada ? 'active-hour' : ''}
-                                    `}
-                                    onClick={() =>
-                                        setHoraSeleccionada(hora)
-                                    }
-                                >
-                                    {hora}
-                                </button>
+                                <p className="sin-horarios">
+                                    No hay horarios disponibles.
+                                </p>
 
-                            ))}
+                            ) : (
+
+                                horariosDisponibles.map(
+                                    (
+                                        horario
+                                    ) => (
+
+                                        <button
+                                            key={
+                                                horario.id
+                                            }
+                                            className={`
+                                                hour-btn
+                                                ${
+                                                    horario.horaInicio ===
+                                                    horaSeleccionada
+                                                        ? 'active-hour'
+                                                        : ''
+                                                }
+                                            `}
+                                            onClick={() =>
+                                                setHoraSeleccionada(
+                                                    horario.horaInicio
+                                                )
+                                            }
+                                        >
+                                            {
+                                                formatearHora(
+                                                    horario.horaInicio
+                                                )
+                                            }
+                                        </button>
+
+                                    )
+                                )
+
+                            )}
 
                         </div>
 
@@ -247,7 +577,9 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
                         <textarea
                             value={comentario}
                             onChange={(e) =>
-                                setComentario(e.target.value)
+                                setComentario(
+                                    e.target.value
+                                )
                             }
                             placeholder="¿Le gustaría centrarse en características específicas durante el recorrido?"
                         ></textarea>
@@ -256,7 +588,9 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
 
                     <button
                         className="submit-btn"
-                        onClick={confirmarCita}
+                        onClick={
+                            confirmarCita
+                        }
                     >
                         Confirmar Solicitud
                     </button>
@@ -264,6 +598,7 @@ function ModalDates({ isOpen, onClose, apartamento, horarios }) {
                 </div>
 
             </div>
+
         </div>
     );
 }
