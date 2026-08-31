@@ -1,0 +1,240 @@
+/* =========================
+   CONTENEDOR GENERAL
+   ========================= */
+
+.contenedor-detalles {
+    width: 95%;
+    max-width: 1100px;
+    margin: 20px auto;
+    color: #222;
+}
+
+
+/* =========================
+   GALERÍA
+   ========================= */
+
+.galeria {
+    width: 100%;
+    height: 450px;
+    display: flex;
+    gap: 4px;
+}
+
+.imagen-principal {
+    width: 70%;
+    height: 450px;
+    overflow: hidden;
+    border-radius: 4px 0 0 4px;
+}
+
+.imagen-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.otras-imagenes {
+    width: 30%;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fila-imagenes {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    gap: 4px;
+}
+
+.fila-imagenes img {
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================
+   INFORMACIÓN PRINCIPAL
+   ========================= */
+
+.informacion-principal {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 18px;
+}
+
+.datos-inmueble {
+    flex: 1;
+    min-width: 0;
+}
+
+.titulo-inmueble {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.direccion-inmueble {
+    margin: 8px 0 0 0;
+    font-size: 20px;
+    color: #555;
+}
+
+
+/* =========================
+   CARACTERÍSTICAS
+   ========================= */
+
+.caracteristicas {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+
+    margin-top: 16px;
+    padding: 13px 0;
+
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.caracteristica {
+    font-size: 11px;
+    color: #444;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+
+/* =========================
+   PRECIO
+   ========================= */
+
+.precio-inmueble {
+    width: 175px;
+    min-width: 175px;
+
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+
+    padding: 14px 12px;
+
+    background-color: #fff;
+}
+
+.texto-precio {
+    display: block;
+    font-size: 9px;
+    color: #555;
+    letter-spacing: 1px;
+}
+
+.precio-inmueble h2 {
+    margin: 3px 0 15px 0;
+    font-size: 20px;
+}
+
+.btn-cita {
+    width: 100%;
+    height: 36px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #007A55;
+    color: white;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+/* =========================
+   DESCRIPCIÓN
+   ========================= */
+
+.seccion-descripcion {
+    width: 68%;
+    margin-top: 20px;
+}
+
+.titulo-seccion {
+    margin: 0 0 10px 0;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.texto-descripcion {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+
+/* =========================
+   UBICACIÓN
+   ========================= */
+
+.seccion-ubicacion {
+    width: 68%;
+    margin-top: 22px;
+}
+
+.texto-ubicacion {
+    margin: 4px 0;
+    font-size: 15px;
+    color: #555;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 800px) {
+
+    .galeria {
+        height: 350px;
+    }
+
+    .imagen-principal {
+        height: 350px;
+    }
+
+    .otras-imagenes {
+        height: 350px;
+    }
+
+    .informacion-principal {
+        flex-direction: column;
+    }
+
+    .datos-inmueble,
+    .caracteristicas,
+    .seccion-descripcion,
+    .seccion-ubicacion {
+        width: 100%;
+    }
+
+    .precio-inmueble {
+        width: 100%;
+    }
+
+    .caracteristicas {
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+}
+
+.img-caracteristicas {
+    width: 15px;
+    margin-right: 8px;
+}

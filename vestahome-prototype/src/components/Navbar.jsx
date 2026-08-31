@@ -3,35 +3,34 @@ import notificacion from '../assets/notificacion.png';
 import mensaje from '../assets/mensaje.png';
 import fotoP from '../assets/fotoP.png';
 
-function Navbar (){
-    const [activeNav, setActiveNav] = useState('');
+function Navbar ({paso, setPaso}){
 
     return(
         <header>
-            <h3 className="brand-logo"><a href="" onClick={() => setActiveNav('')}>VestaHome</a></h3>
+            <h3 className="brand-logo">
+                <a href="" onClick={() => setActiveNav('')}>VestaHome</a>
+            </h3>
+
             <div className="nav">
                 <div className="btn-nav">
-                    <a 
-                        className={`btn-nav-style ${activeNav === 'buscar' ? 'active' : ''}`} 
+                    
+                    <a className={`btn-nav-style ${paso === 3 ? 'active' : ''}`} 
                         href="#" 
-                        onClick={() => setActiveNav('buscar')}
-                    >
-                        Buscar
+                        onClick={() => setPaso(3)}>
+                            Buscar
                     </a>
-                    <a 
-                        className={`btn-nav-style ${activeNav === 'citas' ? 'active' : ''}`} 
+
+                    <a className={`btn-nav-style ${paso === 4 ? 'active' : ''}`} 
                         href="#" 
-                        onClick={() => setActiveNav('citas')}
-                    >
-                        Mis citas
+                        onClick={() => setPaso(4)}>
+                            Mis citas
                     </a>
-                    <a 
-                        className={`btn-nav-style ${activeNav === 'propiedades' ? 'active' : ''}`} 
+
+                    <a className={`btn-nav-style ${paso === 5 ? 'active' : ''}`} 
                         href="#" 
-                        onClick={() => setActiveNav('propiedades')}
-                    >
-                        Gestionar propiedades
-                    </a>
+                        onClick={(e) => { e.preventDefault(); setPaso(5); }}>
+                            Gestionar propiedades
+                    </a>    
 
                     <div className="imgs-nav">
                         <img className='img-nav' src={notificacion} alt="" />

@@ -4,9 +4,15 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from "./pages/Register"
+import Properties from './pages/Properties'
+import Visits from './pages/Visits'
 import Inventory from './pages/Inventory'
+import Detalles from './pages/PropertyDetail'
 
 function App() {
+
+  const [propiedadSeleccionada, setPropiedadSeleccionada] = useState(null);
+
   const [paso, setPaso] = useState(1);
   const [inmobiliaria, setInmobiliaria] = useState({
     //Inventario de propiedades
@@ -15,36 +21,64 @@ function App() {
 
   return (
     <>
-
-      
       <div className='interfaz-global'>
-        <div className='pagina-inicio'>
-          {paso === 1 && (
-            <Login
-            siguiente = {() => setPaso(3)}
-            register = {() => setPaso(2)}/>
-          )}
-        </div>
         
-        {/* La Navbar solo se muestra si NO estás en el paso 1 (Login) */}
+        {/* La Navbar solo aparece en las secciones internas (Properties y Visits) */}
         {paso !== 1 && paso !== 2 && (
-          <div>
-            <Navbar/>
+          <Navbar setPaso={setPaso} paso={paso} />
+        )}
+
+        <main className="seccion-principal">
+          <div className="contenedor">
+            
+            {paso === 1 && (
+              <Login 
+                siguiente={() => setPaso(3)} 
+                register={() => setPaso(2)} 
+              />
+            )}
+
+            {paso === 2 && (
+              <Register 
+                siguiente={() => setPaso(1)} 
+                anterior={() => setPaso(1)} 
+              />
+            )}
+
+           {paso === 3 && (
+              <Properties 
+                inmobiliaria={inmobiliaria}
+                siguiente={(propiedad) => {
+                  setPropiedadSeleccionada(propiedad);
+                  setPaso(6);
+                }} 
+                anterior={() => setPaso(1)} 
+              />
+            )}
+
+            {paso === 4 && (
+              <Visits 
+                anterior={() => setPaso(3)} 
+              />
+            )}
+
+            {paso === 5 && (
+              <Inventory
+                inmobiliaria={inmobiliaria}
+                setInmobiliaria={setInmobiliaria}
+              />
+            )}
+
+
+            {paso === 6 && (
+              <Detalles
+                propiedad={propiedadSeleccionada}
+              />
+            )}
+
           </div>
-        )}
-
-        {paso === 2 && (
-          <Register
-          siguiente = {() => setPaso(1)}
-          anterior = {() => setPaso(1)}/>
-        )} 
-
-        {paso === 3 && (
-          <Inventory
-          inmobiliaria={inmobiliaria}
-          setInmobiliaria={setInmobiliaria}
-          />
-        )}
+        </main>
+        
 
         {/* El Footer solo se muestra si NO estás en el paso 1 (Login) */}
         {paso !== 1 && <Footer/>}

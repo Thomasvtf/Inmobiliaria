@@ -26,7 +26,22 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
     const [area, setArea] = useState("");
     const [estacionamientos, setEstacionamientos] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [fotografias, setFotografias] = useState("");
+    const [fotografias, setFotografias] = useState([]);
+
+    const manejarFotografias = (e) => {
+        const archivos = Array.from(e.target.files);
+
+        if (archivos.length > 5) {
+            alert("Solo puedes seleccionar máximo 5 imágenes.");
+            return;
+        }
+
+        const imagenes = archivos.map((archivo) =>
+            URL.createObjectURL(archivo)
+        );
+
+        setFotografias(imagenes);
+    };
 
     // Estados de error separados para el formulario general y para el modal
     const [errorModal, setErrorModal] = useState({});
@@ -48,7 +63,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                 area: area.trim(),
                 estacionamientos: estacionamientos.trim(),
                 descripcion: descripcion.trim(),
-                fotografias: fotografias.trim()
+                fotografias: fotografias
             };
 
             // Si estamos editando
@@ -90,7 +105,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
         setArea("");
         setEstacionamientos("");
         setDescripcion("");
-        setFotografias("");
+        setFotografias([]);
 
         setErrorModal({});
         setPropiedadEditando(null);
@@ -166,7 +181,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                             setArea("");
                             setEstacionamientos("");
                             setDescripcion("");
-                            setFotografias("");
+                            setFotografias([]);
 
                             setModalAbierto(true);
                         }}
@@ -174,15 +189,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                         + Agregar Nueva Propiedad
                     </button>
                 </div>
-            </div>
-            <div className="contenedor-filtros">
-                <select className="filtro-estado">
-                    <option value="">Todos los estado</option>
-                </select>
-                <select className="filtro-precio">
-                    <option value="">Rango de precios</option>
-                </select>
-            </div>
+            </div>  
             <div className="contenedor-propiedades">
                 <table className="tabla-propiedades">
                     <thead>
@@ -201,7 +208,7 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
 
                                         {propiedad.fotografias ? (
                                             <img
-                                                src={propiedad.fotografias}
+                                                src={propiedad.fotografias[0]}
                                                 alt={propiedad.titulo}
                                                 className="imagen-propiedad"
                                             />
@@ -430,16 +437,37 @@ function Inventory({ inmobiliaria, setInmobiliaria }) {
                         <div className="grupo">
                            <input
                             type="file"
+                            multiple
                             accept="image/*"
                             className="input"
-                            onChange={(e) => {
-                                const archivo = e.target.files[0];
-
-                                if (archivo) {
-                                    setFotografias(URL.createObjectURL(archivo));
-                                }
-                            }}
-                        />
+                            onChange={manejarFotografias}
+                                />
+                        {fotografias.length > 0 && (
+                            <div style={{
+                                display: "flex",
+                                gap: "10px",
+                                marginTop: "15px",
+                                flexWrap: "wrap"
+                            }}>
+                                {fotografias.map((foto, index) => (
+                                    <div key={index}>
+                                        <img
+                                            src={foto}
+                                            alt={`Foto ${index + 1}`}
+                                            style={{
+                                                width: "100px",
+                                                height: "80px",
+                                                objectFit: "cover",
+                                                borderRadius: "8px"
+                                            }}
+                                        />
+                                        <p style={{ margin: "3px 0", textAlign: "center" }}>
+                                            Foto {index + 1}
+                                        </p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                         </div>
                     </div>
 
