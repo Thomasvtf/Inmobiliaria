@@ -12,7 +12,6 @@ import Detalles from './pages/PropertyDetail'
 function App() {
 
   const [propiedadSeleccionada, setPropiedadSeleccionada] = useState(null);
-
   const [paso, setPaso] = useState(1);
   const [inmobiliaria, setInmobiliaria] = useState({
     //Inventario de propiedades
