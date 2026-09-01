@@ -1,0 +1,296 @@
+.cont-dates {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 12px 30px 12px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 25px 0;
+    padding: 0;
+}
+
+.textos-vis {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.h1-vis {
+    margin: 0 0 5px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #191c1e;
+}
+
+.p-vis {
+    margin: 0;
+    color: #191c1e;
+    font-size: 14px;
+}
+
+.btn-horario {
+    background-color: #006c49;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-horario:hover {
+    background-color: #00583c;
+}
+
+.btn-horario-style {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 20px;
+    white-space: nowrap;
+}
+
+.tabs-citas {
+    display: flex;
+    border-bottom: 1px solid #d9dce0;
+    width: 100%;
+    padding-left: 0;
+    box-sizing: border-box;
+}
+
+.btn-tab-citas {
+    text-decoration: none;
+    color: #5c5e62;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 6px 12px 6px;
+    border-bottom: 3px solid transparent;
+}
+
+.btn-tab-citas.active {
+    color: #006c49;
+    border-bottom: 3px solid #006c49;
+}
+
+.citas-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px 14px;
+    margin-top: 25px;
+    box-sizing: border-box;
+}
+
+.cita-card {
+    width: 100%;
+    min-height: 112px;
+    display: flex;
+    background-color: #ffffff;
+    border: 1px solid #d9dce0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.cita-fecha {
+    width: 90px;
+    min-width: 90px;
+    background-color: #f4f5f6;
+    border-right: 1px solid #d9dce0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 5px;
+}
+
+.cita-fecha strong {
+    color: #278c70;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.cita-fecha span {
+    color: #4f5357;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.cita-fecha small {
+    color: #4f5357;
+    font-size: 10px;
+    font-weight: 600;
+    margin-top: 2px;
+    white-space: nowrap;
+}
+
+.cita-fecha small:last-child {
+    color: #191c1e;
+    font-size: 8px;
+    font-weight: normal;
+}
+
+.cita-informacion {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 15px 10px 15px;
+    box-sizing: border-box;
+}
+
+.cita-informacion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.cita-informacion-header h3 {
+    margin: 0;
+    color: #4f5357;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cita-estado {
+    flex-shrink: 0;
+    background-color: #d9f8ed;
+    color: #278c70;
+    border-radius: 12px;
+    padding: 4px 9px;
+    font-size: 8px;
+    font-weight: 600;
+}
+
+.cita-lugar {
+    margin: 14px 0 10px 0;
+    color: #278c70;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cita-lugar span {
+    color: #191c1e;
+    font-size: 10px;
+}
+
+.cita-linea {
+    width: 100%;
+    height: 1px;
+    background-color: #d9dce0;
+    margin-bottom: 9px;
+}
+
+.cita-acciones {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.btn-aprobar {
+    border: none;
+    background-color: #278c70;
+    color: white;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-size: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-aprobar:hover {
+    background-color: #006c49;
+}
+
+.btn-reprogramar {
+    border: 1px solid #bfc3c7;
+    background-color: white;
+    color: #4f5357;
+    border-radius: 3px;
+    padding: 5px 10px;
+    font-size: 8px;
+    cursor: pointer;
+}
+
+.btn-reprogramar:hover {
+    background-color: #f5f5f5;
+}
+
+.btn-cancelar {
+    margin-left: auto;
+    border: none;
+    background: none;
+    color: #d92525;
+    font-size: 8px;
+    cursor: pointer;
+    padding: 5px 0;
+}
+
+.btn-cancelar:hover {
+    text-decoration: underline;
+}
+
+.sin-citas {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #5c5e62;
+    font-size: 14px;
+    padding: 40px 0;
+}
+
+@media (max-width: 1100px) {
+    .citas-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 750px) {
+    .citas-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn-horario {
+        align-self: flex-start;
+    }
+
+    .cita-fecha {
+        width: 80px;
+        min-width: 80px;
+    }
+
+    .cita-informacion {
+        padding: 12px;
+    }
+
+    .cita-acciones {
+        flex-wrap: wrap;
+    }
+
+    .btn-cancelar {
+        margin-left: 0;
+    }
+}

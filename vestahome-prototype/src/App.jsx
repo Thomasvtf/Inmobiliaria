@@ -5,14 +5,13 @@ import Footer from './components/Footer'
 import Login from './pages/Login'
 import Register from "./pages/Register"
 import Properties from './pages/Properties'
-import Visits from './pages/Visits'
+import Dates from './pages/Dates'
 import Inventory from './pages/Inventory'
 import Detalles from './pages/PropertyDetail'
 
 function App() {
 
   const [propiedadSeleccionada, setPropiedadSeleccionada] = useState(null);
-
   const [paso, setPaso] = useState(1);
   const [inmobiliaria, setInmobiliaria] = useState({
     //Inventario de propiedades
@@ -57,7 +56,7 @@ function App() {
             )}
 
             {paso === 4 && (
-              <Visits 
+              <Dates 
                 anterior={() => setPaso(3)} 
               />
             )}

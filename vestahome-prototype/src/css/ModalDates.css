@@ -1,0 +1,328 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(25, 28, 30, 0.35);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-container {
+    background-color: white;
+    width: 850px;
+    max-width: 90%;
+    height: 600px;
+    border-radius: 7px;
+    overflow: hidden;
+    display: flex;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* IZQUIERDA */
+
+.modal-left {
+    width: 42%;
+    background-color: #f3f3f3;
+}
+
+.property-image-placeholder {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.property-info-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 70px 16px 18px 6px;
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.75)
+    );
+    color: white;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.property-info-overlay h2 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.property-info-overlay p {
+    margin: 0;
+    font-size: 12px;
+}
+
+
+/* DERECHA */
+
+.modal-right {
+    width: 58%;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.modal-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.modal-header-top h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #191c1e;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #5c5e62;
+    padding: 0;
+}
+
+
+/* DATOS */
+
+.datos-cita {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.campo-cita {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-cita label {
+    font-size: 10px;
+    color: #191c1e;
+    margin-bottom: 5px;
+}
+
+.campo-cita input {
+    width: 100%;
+    height: 34px;
+    box-sizing: border-box;
+    border: 1px solid #d1d5d9;
+    border-radius: 5px;
+    padding: 0 9px;
+    font-family: inherit;
+    font-size: 10px;
+    outline: none;
+}
+
+.campo-cita input:focus {
+    border-color: #006c49;
+}
+
+
+/* CALENDARIO */
+
+.calendar-section {
+    width: 100%;
+}
+
+.calendar-month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #191c1e;
+    margin-bottom: 8px;
+}
+
+.calendar-arrows {
+    display: flex;
+    gap: 8px;
+}
+
+.calendar-arrows button {
+    background-color: white;
+    border: 1px solid #d9dce0;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #5c5e62;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-grid-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    text-align: center;
+    font-size: 11px;
+    margin-bottom: 18px;
+}
+
+.calendar-week {
+    color: #191c1e;
+    font-weight: bold;
+    padding: 4px 0;
+}
+
+.calendar-day {
+    border: none;
+    background-color: white;
+    color: #191c1e;
+    font-size: 11px;
+    height: 28px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.other-month {
+    color: #bfc2c5;
+    cursor: default;
+}
+
+.calendar-day.selected-day {
+    background-color: #000000;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-day:disabled {
+    background-color: white;
+}
+
+
+/* HORARIOS */
+
+.hours-section h3,
+.comments-section h3 {
+    font-size: 11px;
+    font-weight: normal;
+    color: #191c1e;
+    margin: 0 0 8px 0;
+}
+
+.hours-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.hour-btn {
+    background-color: white;
+    border: 1px solid #d1d5d9;
+    padding: 6px 16px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #191c1e;
+    min-width: 88px;
+}
+
+.hour-btn:hover {
+    border-color: #006c49;
+}
+
+.active-hour {
+    background-color: #62e8b7;
+    border-color: #006c49;
+    color: #191c1e;
+}
+
+.sin-horarios {
+    margin: 0;
+    color: #8a8d91;
+    font-size: 11px;
+}
+
+
+/* COMENTARIOS */
+
+.comments-section textarea {
+    width: 100%;
+    height: 75px;
+    box-sizing: border-box;
+    border: 1px solid #d1d5d9;
+    border-radius: 6px;
+    padding: 12px;
+    resize: none;
+    font-family: inherit;
+    font-size: 11px;
+    color: #5c5e62;
+    background-color: #f8f9fa;
+    outline: none;
+}
+
+.comments-section textarea:focus {
+    border-color: #006c49;
+}
+
+
+/* CONFIRMAR */
+
+.submit-btn {
+    margin-top: 12px;
+    background-color: #006c49;
+    color: white;
+    border: none;
+    padding: 12px 0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #00583c;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    .modal-container {
+        height: 90vh;
+        flex-direction: column;
+    }
+
+    .modal-left {
+        width: 100%;
+        height: 220px;
+    }
+
+    .modal-right {
+        width: 100%;
+        height: calc(100% - 220px);
+    }
+
+    .datos-cita {
+        grid-template-columns: 1fr;
+    }
+}
