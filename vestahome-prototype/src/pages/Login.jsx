@@ -53,7 +53,7 @@ function Login({siguiente, register}) {
               <p className="txt-form">
                 ¿No tiene cuenta? <a onClick={register} className="link-login">Registrese ahora</a>
               </p>
-              <a href="#" className="link-login">¿Olvidó du contraseña?</a>
+              <a href="#" className="link-login">¿Olvidó su contraseña?</a>
             </div>
           </form>
         </div>
